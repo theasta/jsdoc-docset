@@ -4,6 +4,17 @@ var objectAssign = require('object-assign');
 var Generator = require('docset-generator').DocSetGenerator;
 var Entries = require('./DocSetEntries');
 
+/**
+ *
+ * @param {Object} config
+ * @param {Object} config.opts - jsdoc options (Template publish function third parameter)
+ * @param {string} config.opts.destination - Html documentation path
+ * @param {string} [config.opts.configure] - Path to the jsdoc conf file
+ * @param {boolean} [config.verbose] - Verbose flag, will default to false
+ * @param {Object} config.templateHelper - templateHelper needed by the Entries instance
+ * @param {Object} config.docletHelper - docletHelper needed by the Entries instance
+ * @returns {Promise}
+ */
 module.exports = function (config) {
   config = config || {};
   var opts = config.opts || {};
@@ -12,7 +23,8 @@ module.exports = function (config) {
   }
 
   var docSetConfig = {
-    documentation: opts.destination
+    documentation: opts.destination,
+    verbose: !!config.verbose
   };
 
   try {
