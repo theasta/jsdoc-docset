@@ -1,6 +1,6 @@
 {
   "name": "jsdoc-docset",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Generate a docSet compatible with the dash app from within a jsDoc template",
   "main": "index.js",
   "scripts": {
