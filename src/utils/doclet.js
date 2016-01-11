@@ -19,14 +19,19 @@ var isCallback = function (doclet) {
   return doclet.kind === jsdocKinds.TYPEDEF && doclet.signature;
 };
 
+var isGlobalProperty = function (doclet) {
+  return doclet.kind === jsdocKinds.MEMBER && doclet.scope === 'global';
+};
+
 module.exports = {
   getDocsetTypeFor: function (doclet) {
     var kind = doclet.kind;
     if (isTutorial(doclet)) {
       kind = jsdocKinds.TUTORIAL;
-    }
-    if (isCallback(doclet)) {
+    } else if (isCallback(doclet)) {
       kind = jsdocKinds.CALLBACK;
+    } else if (isGlobalProperty(doclet)) {
+      kind = jsdocKinds.GLOBAL;
     }
     return _map[kind];
   },
